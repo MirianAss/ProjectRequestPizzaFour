@@ -30,7 +30,7 @@ class TableViewPizzaViewController: UIViewController {
         requestPizza()
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PizzaTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
+        tableView.delegate = self
     }
     
 }
@@ -48,6 +48,15 @@ extension TableViewPizzaViewController: UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    
+  
+}
+extension TableViewPizzaViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let screen = storyboard?.instantiateViewController(withIdentifier: "pizza")as? ScreenPizzaViewController {
+            
+            screen.screenPizza = self.arrayPizza?[indexPath.row]
+            
+            self.present(screen, animated: true)
+        }
+    }
 }
