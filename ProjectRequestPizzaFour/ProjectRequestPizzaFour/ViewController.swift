@@ -14,6 +14,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func btMenu(_ sender: Any) {
+        if let screen = storyboard?.instantiateViewController(withIdentifier: "tableView") as? TableViewPizzaViewController {
+            
+            self.present(screen, animated: true)
+        }
+    }
+    
 }
 
