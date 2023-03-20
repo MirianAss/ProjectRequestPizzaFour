@@ -26,6 +26,6 @@ class ScreenPizzaViewController: UIViewController {
     }
     
     @IBAction func btMenu(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true)
+        self.dismiss(animated: true)
     }
 }
