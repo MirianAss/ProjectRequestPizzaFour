@@ -10,7 +10,7 @@ import UIKit
 class ScreenPizzaViewController: UIViewController {
     
     var screenPizza: PizzaElement?
-
+    
     @IBOutlet weak var lblPizzaP: UILabel!
     @IBOutlet weak var lblPizzaM: UILabel!
     @IBOutlet weak var lblPizzaG: UILabel!
@@ -18,10 +18,14 @@ class ScreenPizzaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        lblPizzaP.text = "PEQUENA - R$\(screenPizza?.priceP ?? 0.0)"
+        lblPizzaM.text = "MÉDIA - R$\(screenPizza?.priceM ?? 0.0)"
+        lblPizzaG.text = "GRANDE - R$\(screenPizza?.priceG ?? 0.0)"
+        lblPizzaRating.text = "\(screenPizza?.rating ?? 0) ESTRELAS"
     }
-
+    
     @IBAction func btMenu(_ sender: Any) {
+        self.navigationController?.dismiss(animated: true)
     }
 }
