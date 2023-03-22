@@ -16,16 +16,6 @@ class TableViewPizzaViewController: UIViewController {
     
     let request = Request()
     
-    //    func requestPizza() {
-    //
-    //        AF.request("https://p3teufi0k9.execute-api.us-east-1.amazonaws.com/v1/pizza").response {response in
-    //
-    //            let pizza = try? JSONDecoder().decode(Pizza.self, from: response.data ?? Data())
-    //            self.arrayPizza = pizza
-    //            self.tableView.reloadData()
-    //        }
-    //    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
