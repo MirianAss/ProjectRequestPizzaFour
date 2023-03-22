@@ -14,26 +14,32 @@ class TableViewPizzaViewController: UIViewController {
     
     var arrayPizza: Pizza?
     
-    func requestPizza() {
-        
-        AF.request("https://p3teufi0k9.execute-api.us-east-1.amazonaws.com/v1/pizza").response {response in
-            
-            let pizza = try? JSONDecoder().decode(Pizza.self, from: response.data ?? Data())
-            self.arrayPizza = pizza
-            self.tableView.reloadData()
-        }
-    }
+    let request = Request()
+    
+    //    func requestPizza() {
+    //
+    //        AF.request("https://p3teufi0k9.execute-api.us-east-1.amazonaws.com/v1/pizza").response {response in
+    //
+    //            let pizza = try? JSONDecoder().decode(Pizza.self, from: response.data ?? Data())
+    //            self.arrayPizza = pizza
+    //            self.tableView.reloadData()
+    //        }
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestPizza()
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PizzaTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.delegate = self
+        
+        request.requestPizza{ arrayDePizza in
+            self.arrayPizza = arrayDePizza
+            self.tableView.reloadData()
+        }
     }
-    
 }
+
 extension TableViewPizzaViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayPizza?.count ?? 0
@@ -48,7 +54,7 @@ extension TableViewPizzaViewController: UITableViewDataSource {
         }
         return UITableViewCell()
     }
-  
+    
 }
 extension TableViewPizzaViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
